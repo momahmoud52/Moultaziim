@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مسبحة إلكترونية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: #eaf2ff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        header {
+            background-color: #4c8bf5;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 2.5rem;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .tasbeeh-text {
+            font-size: 2rem;
+            color: #4c8bf5;
+            margin-bottom: 20px;
+        }
+
+        .counter {
+            font-size: 4rem;
+            color: #2c6cb5;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .btn {
+            padding: 18px 30px;
+            font-size: 1.3rem;
+            color: white;
+            background-color: #4c8bf5;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            background-color: #2c6cb5;
+            transform: scale(1.05);
+        }
+
+        .select {
+            padding: 12px 18px;
+            font-size: 1.2rem;
+            background-color: #eef2fc;
+            border: 1px solid #4c8bf5;
+            border-radius: 30px;
+            margin-top: 20px;
+            transition: border-color 0.3s ease;
+        }
+
+        .select:focus {
+            border-color: #2c6cb5;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 10px;
+            background-color: #4c8bf5;
+            color: white;
+            border-radius: 20px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* استجابة للموبايل والأجهزة الصغيرة */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                width: 90%;
+            }
+
+            .counter {
+                font-size: 3rem;
+            }
+
+            .btn {
+                font-size: 1.1rem;
+                padding: 15px 25px;
+            }
+
+            .select {
+                font-size: 1rem;
+                padding: 10px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                width: 85%;
+            }
+
+            .counter {
+                font-size: 2.5rem;
+            }
+
+            .btn {
+                font-size: 1rem;
+                padding: 12px 20px;
+            }
+
+            .select {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>مسبحة إلكترونية</h1>
+    </header>
+
+    <div class="container">
+        <p class="tasbeeh-text">التسبيح بـ:</p>
+        
+        <!-- اختيار نوع التسبيح -->
+        <select id="tasbeehType" class="select">
+            <option value="سبحان الله">سبحان الله</option>
+            <option value="الحمد لله">الحمد لله</option>
+            <option value="الله أكبر">الله أكبر</option>
+            <option value="لا إله إلا الله">لا إله إلا الله</option>
+        </select>
+
+        <!-- عرض التسبيح الحالي -->
+        <p class="tasbeeh-text" id="currentTasbeeh">سبحان الله</p>
+
+        <!-- العد -->
+        <div class="counter" id="counter">0</div>
+
+        <!-- الأزرار -->
+        <button class="btn" onclick="incrementCounter(); playSound(); vibrateDevice();">التسبيح</button>
+        <button class="btn" onclick="resetCounter()">تصفير</button>
+        
+        <!-- زر العودة للصفحة الرئيسية -->
+        <a href="index.html">
+            <button class="btn">العودة للصفحة الرئيسية</button>
+        </a>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 موقع Moultazim. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        let count = 0;
+
+        // زيادة العد عند الضغط على زر التسبيح
+        function incrementCounter() {
+            count++;
+            document.getElementById("counter").innerText = count;
+        }
+
+        // إعادة العد إلى الصفر
+        function resetCounter() {
+            count = 0;
+            document.getElementById("counter").innerText = count;
+        }
+
+        // تغيير التسبيح عند اختيار نوع جديد
+        document.getElementById("tasbeehType").addEventListener("change", function() {
+            const selectedTasbeeh = this.value;
+            document.getElementById("currentTasbeeh").innerText = selectedTasbeeh;
+            resetCounter();  // تصفير العد تلقائيًا عند اختيار نوع جديد
+        });
+
+        // تشغيل الصوت عند الضغط
+        function playSound() {
+            let audio = new Audio('https://www.soundjay.com/button/beep-07.wav'); // رابط للصوت
+            audio.play();
+        }
+
+        // اهتزاز الجهاز عند الضغط
+        function vibrateDevice() {
+            if (navigator.vibrate) {
+                navigator.vibrate(200); // اهتزاز لمدة 200 ميلي ثانية
+            }
+        }
+    </script>
+
+</body>
+</html>

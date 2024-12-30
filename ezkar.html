@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اذكار المسلم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* تنسيق الصفحة */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #f0f8ff; /* خلفية ناعمة */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #4c8bf5; /* لون جديد لواجهة العنوان */
+            color: white;
+            padding: 20px 30px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-family: 'Amiri', serif;
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .adhkar-list {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 960px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .adhkar-item {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #eef2fc;
+            color: #4c8bf5;
+        }
+
+        .adhkar-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15);
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #4c8bf5;
+            color: white;
+            font-size: 0.9rem;
+            border-top: 3px solid #2c6cb5;
+            margin-top: 230px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: #2c6cb5;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-top: 10px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #4c8bf5;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .modal-content h2 {
+            color: #4c8bf5;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .modal-content p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .close-btn {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            background: #4c8bf5;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: #2c6cb5;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* استجابة للموبايل والأجهزة الصغيرة */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .adhkar-item {
+                font-size: 1.1rem;
+                padding: 18px;
+            }
+
+            .modal-content h2 {
+                font-size: 1.6rem;
+            }
+
+            footer {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 15px;
+            }
+
+            header h1 {
+                font-size: 1.6rem;
+            }
+
+            .adhkar-item {
+                font-size: 1rem;
+                padding: 15px;
+            }
+
+            footer {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>اذكار المسلم</h1>
+    </header>
+
+    <div class="adhkar-list">
+        <!-- أذكار مختلفة -->
+        <div class="adhkar-item" onclick="openModal('adhkar-sabah')">
+            <h3>أذكار الصباح</h3>
+        </div>
+        <div class="adhkar-item" onclick="openModal('adhkar-masaa')">
+            <h3>أذكار المساء</h3>
+        </div>
+        <div class="adhkar-item" onclick="openModal('adhkar-yaum-layl')">
+            <h3>أذكار اليوم والليل</h3>
+        </div>
+        <div class="adhkar-item" onclick="openModal('adhkar-wudoo')">
+            <h3>أذكار الوضوء والصلاة</h3>
+        </div>
+        <div class="adhkar-item" onclick="openModal('adhkar-taam-saum')">
+            <h3>أذكار الطعام والصوم</h3>
+        </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="adhkar-sabah" class="modal">
+        <div class="modal-content">
+            <h2>أذكار الصباح</h2>
+            <p>1. سبحان الله وبحمده.</p>
+            <p>2. اللهم صل على محمد.</p>
+            <p>3. بسم الله الذي لا يضر مع اسمه شيء في الأرض ولا في السماء.</p>
+            <button class="close-btn" onclick="closeModal('adhkar-sabah')">إغلاق</button>
+        </div>
+    </div>
+
+    <div id="adhkar-masaa" class="modal">
+        <div class="modal-content">
+            <h2>أذكار المساء</h2>
+            <p>1. اللهم إني أسألك خير هذا اليوم.</p>
+            <p>2. اللهم إني أعوذ بك من همزات الشياطين.</p>
+            <button class="close-btn" onclick="closeModal('adhkar-masaa')">إغلاق</button>
+        </div>
+    </div>
+
+    <div id="adhkar-yaum-layl" class="modal">
+        <div class="modal-content">
+            <h2>أذكار اليوم والليل</h2>
+            <p>1. اللهم إني أسألك رحمة تهدي بها قلبي.</p>
+            <p>2. اللهم اجعل هذا اليوم خيرًا لي.</p>
+            <button class="close-btn" onclick="closeModal('adhkar-yaum-layl')">إغلاق</button>
+        </div>
+    </div>
+
+    <div id="adhkar-wudoo" class="modal">
+        <div class="modal-content">
+            <h2>أذكار الوضوء والصلاة</h2>
+            <p>1. أشهد أن لا إله إلا الله وحده لا شريك له.</p>
+            <p>2. اللهم اجعلني من أهل الصلاة.</p>
+            <button class="close-btn" onclick="closeModal('adhkar-wudoo')">إغلاق</button>
+        </div>
+    </div>
+
+    <div id="adhkar-taam-saum" class="modal">
+        <div class="modal-content">
+            <h2>أذكار الطعام والصوم</h2>
+            <p>1. بسم الله عند الطعام.</p>
+            <p>2. اللهم تقبل منا صيامنا.</p>
+            <button class="close-btn" onclick="closeModal('adhkar-taam-saum')">إغلاق</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 موقع Moultazim. جميع الحقوق محفوظة.</p>
+        <a href="index.html" class="back-btn">العودة للصفحة الرئيسية</a>
+    </footer>
+
+    <script>
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
