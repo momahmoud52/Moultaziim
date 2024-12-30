@@ -34,7 +34,7 @@
             padding: 20px 0;
             z-index: 100;
             display: flex;
-            justify-content: center; /* Center the header contents */
+            justify-content: center;
             align-items: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             animation: slideInDown 1s ease-out;
@@ -42,13 +42,13 @@
 
         .header-container {
             width: 100%;
-            max-width: 1200px; /* Control max width for better alignment */
+            max-width: 1200px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 20px;
             background: #ffffff;
-            border-radius: 10px; /* Rounded corners */
+            border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
@@ -63,9 +63,13 @@
         }
 
         .logo h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: #000000;
             font-weight: 600;
+        }
+
+        nav {
+            position: relative;
         }
 
         nav a {
@@ -79,6 +83,52 @@
 
         nav a:hover {
             color: #00bcd4;
+        }
+
+        /* Dropdown Styles */
+        #dropdownMenu {
+            display: none;
+            position: absolute;
+            top: 100%; /* Position below the parent link */
+            left: 0;
+            background: #ffffff;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            width: 200px;
+            padding: 10px 0;
+            z-index: 200;
+        }
+
+        #dropdownMenu a {
+            display: block;
+            padding: 10px 20px;
+            color: #333333;
+            text-decoration: none;
+            font-size: 1rem;
+            text-align: right;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        #dropdownMenu a:hover {
+            background: #00bcd4;
+            color: #ffffff;
+        }
+
+        /* Hamburger icon */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            background-color: #000000;
+            height: 4px;
+            width: 100%;
         }
 
         /* Hero Section */
@@ -103,10 +153,10 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            z-index: -1; /* Keep the video behind other content */
+            z-index: -1;
             animation: fadeInUp 2s ease-out;
-            opacity: 0.2; /* Reduced transparency */
-            filter: blur(3px); /* Added blur effect */
+            opacity: 0.2;
+            filter: blur(3px);
         }
 
         .hero h2 {
@@ -118,7 +168,7 @@
 
         .hero p {
             font-size: 1.6rem;
-            color: #000000; /* White for better contrast */
+            color: #000000;
             max-width: 800px;
             line-height: 1.7;
             animation: fadeInUp 2s ease-out;
@@ -138,6 +188,51 @@
             color: #00bcd4;
             text-decoration: none;
             font-weight: bold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            #navMenu {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #navMenu.active {
+                display: flex;
+            }
+
+            nav a {
+                margin: 10px 0;
+            }
+
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #dropdownMenu {
+                width: 100%;
+                left: 0;
+            }
+
+            .logo h1 {
+                font-size: 2rem;
+            }
         }
 
         /* Animations */
@@ -173,81 +268,6 @@
                 opacity: 1;
             }
         }
-
-        /* Media Queries for Responsive Design */
-        @media (max-width: 600px) {
-            .hero h2 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.3rem;
-            }
-
-            nav a {
-                font-size: 1rem;
-                margin: 0 10px;
-            }
-
-            .logo h1 {
-                font-size: 2rem;
-            }
-
-            .logo img {
-                width: 40px;
-                height: 40px;
-            }
-
-            footer p {
-                font-size: 1rem;
-            }
-
-            .hero video {
-                opacity: 0.1; /* Lower opacity on mobile devices */
-            }
-        }
-
-        @media (min-width: 601px) and (max-width: 1024px) {
-            .hero h2 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.4rem;
-            }
-
-            nav a {
-                font-size: 1.1rem;
-                margin: 0 15px;
-            }
-
-            .logo h1 {
-                font-size: 2.5rem;
-            }
-
-            footer p {
-                font-size: 1.1rem;
-            }
-        }
-
-        @media (min-width: 1025px) {
-            .hero h2 {
-                font-size: 3.5rem;
-            }
-
-            .hero p {
-                font-size: 1.6rem;
-            }
-
-            nav a {
-                font-size: 1.2rem;
-                margin: 0 20px;
-            }
-
-            .logo h1 {
-                font-size: 3rem;
-            }
-        }
     </style>
 </head>
 <body>
@@ -258,24 +278,29 @@
                 <img src="Screenshot 2024-12-30 012751.png" alt="Moultazim Logo">
                 <h1>Moultazim</h1>
             </div>
-            <nav>
-                <a href="ezkar.html">اذكار المسلم</a>
-                <a href="tasbih.html">التسبيح الالكتروني</a>
-                <a href="#">قصص اسلامية</a>
-                <a href="#">ادعية المسلم اليومية</a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <nav id="navMenu">
+                <a href="javascript:void(0);" onclick="toggleDropdownMenu()">القائمة</a>
+                <div id="dropdownMenu">
+                    <a href="ezkar.html">اذكار المسلم</a>
+                    <a href="tasbih.html">التسبيح الالكتروني</a>
+                    <a href="#">قصص اسلامية</a>
+                    <a href="#">ادعية المسلم اليومية</a>
+                </div>
             </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <!-- Background Video -->
         <video autoplay muted loop>
             <source src="mmm.mp4" type="video/mp4">
-            <source src="background-video.ogg" type="video/ogg">
             متصفحك لا يدعم الفيديو.
         </video>
-
         <h2>موقع Moultazim مرحباً بكم</h2>
         <p>نحن نهدف إلى توعية الشباب المسلم من خلال تقديم محتوى إسلامي قيّم يعزز التزامهم في حياتهم اليومية. انضم إلينا لنمضي معًا نحو حياة متوازنة ومثمرة وفقًا للقيم الإسلامية.</p>
     </section>
@@ -284,5 +309,17 @@
     <footer>
         <p>&copy; 2024 موقع Moultazim. جميع الحقوق محفوظة. | <a href="#">سياسة الخصوصية</a> | <a href="#">اتصل بنا</a></p>
     </footer>
+
+    <script>
+        function toggleDropdownMenu() {
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            dropdownMenu.style.display = (dropdownMenu.style.display === 'block') ? 'none' : 'block';
+        }
+
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
